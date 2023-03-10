@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>TRANG TÌM KIẾM</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Bentham|Playfair+Display|Raleway:400,500|Suranna|Trocchi"
+      rel="stylesheet"
+    />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="/lib/animate/animate.min.css" rel="stylesheet" />
+    <link
+      href="/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet" />
+
+    <style>
+        * {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+body, button, input {
+  font: 1em Hind, sans-serif;
+  line-height: 1.5em;
+}
+
+.search-bar {
+  display: flex;
+}
+earch-bar input,
+.search-btn, 
+.search-btn:before, 
+.search-btn:after {
+  transition: all 0.25s ease-out;
+}
+.search-bar input,
+.search-btn {
+  width: 3em;
+  height: 3em;
+}
+.search-bar input:invalid:not(:focus),
+.search-btn {
+  cursor: pointer;
+}
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+  width: 100%;
+}
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+  outline: transparent;
+}
+.search-bar {
+  margin: auto;
+  padding: 1.5em;
+  justify-content: center;
+  max-width: 30em;
+}
+.search-bar input {
+  background: transparent;
+  border-radius: 1.5em;
+  box-shadow: 0 0 0 0.4em #171717 inset;
+  padding: 0.75em;
+  transform: translate(0.5em,0.5em) scale(0.5);
+  transform-origin: 100% 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.search-bar input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+.search-bar input:focus,
+.search-bar input:valid {
+  background: #fff;
+  border-radius: 0.375em 0 0 0.375em;
+  box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+  transform: scale(1);
+}
+.search-btn {
+  background: #171717;
+  border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+  padding: 0.75em;
+  position: relative;
+  transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+  transform-origin: 0 50%;
+}
+.search-btn:before, 
+.search-btn:after {
+  content: "";
+  display: block;
+  opacity: 0;
+  position: absolute;
+}
+.search-btn:before {
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+  top: 0.75em;
+  left: 0.75em;
+  width: 1.2em;
+  height: 1.2em;
+}
+.search-btn:after {
+  background: #f1f1f1;
+  border-radius: 0 0.25em 0.25em 0;
+  top: 51%;
+  left: 51%;
+  width: 0.75em;
+  height: 0.25em;
+  transform: translate(0.2em,0) rotate(45deg);
+  transform-origin: 0 50%;
+}
+.search-btn span {
+  display: inline-block;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+  background: #2762f3;
+  border-radius: 0 0.375em 0.375em 0;
+  transform: scale(1);
+}
+.search-bar input:focus + .search-btn:before, 
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before, 
+.search-bar input:valid + .search-btn:after {
+  opacity: 1;
+}
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+  background: #0c48db;
+}
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+  transform: translateY(1px);
+}
+
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div class="spinner-border text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <div
+      class="container-fluid fixed-top px-0 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
+        <div class="col-lg-6 px-5 text-start">
+          <small
+            ><i class="fa fa-map-marker-alt me-2"></i>Thủ Đức, TP.Hồ Chí
+            Minh</small
+          >
+          <small class="ms-4"
+            ><i class="fa fa-envelope me-2"></i>vtmanh106188@gmail.com</small
+          >
+        </div>
+        <div class="col-lg-6 px-5 text-end">
+          <small>Theo dõi chúng tôi:</small>
+          <a class="text-body ms-3" href=""
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
+          <a class="text-body ms-3" href=""
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a class="text-body ms-3" href=""><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <nav
+        class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn"
+        data-wow-delay="0.1s"
+      >
+        <a href="/" class="navbar-brand ms-4 ms-lg-0">
+          <h1 class="fw-bold text-primary m-0">
+            F<span class="text-secondary">oo</span>dy
+          </h1>
+        </a>
+        <button
+          type="button"
+          class="navbar-toggler me-4"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="/" class="nav-item nav-link active">Trang Chủ</a>
+            <a href="#" class="nav-item nav-link">Giỏ Hàng</a>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Sản Phẩm</a
+              >
+              <div class="dropdown-menu m-0">
+                <% for (let sp of listCategoies) { %>
+                <a href="/product_cat/<%= sp.idCat %>" class="dropdown-item"
+                  ><%= sp.nameCat %></a
+                >
+                <% } %>
+              </div>
+            </div>
+            <a href="/new_product" class="nav-item nav-link">NEW</a>
+            <a href="/hot_product" class="nav-item nav-link">HOT</a>
+            <a href="/best_product" class="nav-item nav-link">BEST</a>
+          </div>
+          <div class="d-none d-lg-flex ms-2">
+            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+              <small class="fa fa-search text-body"></small>
+            </a>
+            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+              <small class="fa fa-user text-body"></small>
+            </a>
+            <a class="btn-sm-square bg-white rounded-circle ms-3" href="">
+              <small class="fa fa-shopping-bag text-body"></small>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Page Header Start -->
+    <div
+      class="container-fluid page-header mb-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container">
+        <h1 class="display-3 mb-3 animated slideInDown">TÌM KIẾM</h1>
+      </div>
+    </div>
+
+    <form action="" class="search-bar" method="GET">
+        <input type="text" name="name" pattern=".*\S.*" required>
+        <button class="search-btn" type="submit" id="btn_find">
+          <span>Search</span>
+        </button>
+    </form>
+
+    <div class="container">
+      <div class="row" id="find_products">
+        
+      </div>
+    </div>
+    
+    <!-- Page Header End -->
+
+    <!-- Product Start -->
+    
+    <!-- Product End -->
+
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <h1 class="fw-bold text-primary mb-4">
+              F<span class="text-secondary">oo</span>dy
+            </h1>
+            <p>Theo dõi chúng tôi</p>
+            <div class="d-flex pt-2">
+              <a
+                class="btn btn-square btn-outline-light rounded-circle me-1"
+                href=""
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a
+                class="btn btn-square btn-outline-light rounded-circle me-1"
+                href=""
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                class="btn btn-square btn-outline-light rounded-circle me-1"
+                href=""
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                class="btn btn-square btn-outline-light rounded-circle me-0"
+                href=""
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-light mb-4">Địa Chỉ</h4>
+            <p>
+              <i class="fa fa-map-marker-alt me-3"></i>Thủ Đức, TP.Hồ Chí Minh
+            </p>
+            <p><i class="fa fa-phone-alt me-3"></i>0879.516.481</p>
+            <p><i class="fa fa-envelope me-3"></i>vtmanh106188@gmail.com</p>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-light mb-4">Quick Links</h4>
+            <a class="btn btn-link" href="">Giới Thiệu</a>
+            <a class="btn btn-link" href="">Liên Hệ</a>
+            <a class="btn btn-link" href="">Hỗ Trợ</a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-light mb-4">Hòm Thư</h4>
+            <p>Bạn có góp ý về chúng tôi</p>
+            <div class="position-relative mx-auto" style="max-width: 400px">
+              <input
+                class="form-control bg-transparent w-100 py-3 ps-4 pe-5"
+                type="text"
+                placeholder="Email..."
+              />
+              <button
+                type="button"
+                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
+              >
+                Đăng Nhập
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid copyright">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a href="#">Manh Vu</a>, Cao Đẳng FPT Polytechnic.
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+              Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+              <br />Distributed By:
+              <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a
+      href="#"
+      class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/wow/wow.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/js/main.js"></script>
+    <script src="/js/detail_product.js"></script>
+  </body>
+</html>
+
+

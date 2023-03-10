@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>INFOR USER</title>
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    
+    <form name="frm" class="col-8 border border-dark p-3 m-auto">
+      <h3 class="text-center">Thông Tin Khách Hàng</h3>
+      <div class="form-group">
+        <label class="username">Tên đăng nhập</label>
+        <input
+          class="form-control bg-info"
+          name="username"
+          id="username"
+          value="<%= data.username %>"
+        />
+      </div>
+      <div class="form-group">
+        <label class="email">Email</label>
+        <input
+          class="form-control bg-warning"
+          name="email"
+          id="email"
+          value="<%= data.email %>"
+        />
+      </div>
+      <div class="form-group">
+        <label class="hoTen">Họ Tên</label>
+        <input class="form-control bg-info" name="hoTen" id="hoTen" value="<%= data.hoTen %>" />
+      </div>
+      <div class="form-group">
+        <label class="soThich">Sở Thích</label>
+        <textarea
+          rows="5"
+          class="form-control bg-info"
+          name="soThich"
+          id="soThich"
+        ><%= data.soThich %></textarea>
+      </div>
+      <div class="form-group mt-3">
+        <button type="button" class="btn btn-danger py-2 px-4">Cập Nhật</button>
+      </div>
+      <input type="hidden" value="<%= data.idUser %>" name="idUser" id="idUser">
+      <div class="form-group mt-3">
+        <button type="button" class="btn btn-danger py-2 px-4"><a href="/change_pass" style="text-decoration: none; color: white;">Đổi Mật Khẩu</a></button>
+      </div>
+    </form>
+  </body>
+</html>
