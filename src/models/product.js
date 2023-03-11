@@ -1,5 +1,10 @@
 import db from '../config/connectDB';
 
+exports.list = (callback) => {
+    let sql = 'SELECT * FROM product';
+    db.query(sql, (err, getList) => {callback(getList)})
+}
+
 exports.new = (callback) => {
     let sql = 'SELECT * FROM product ORDER BY newSP DESC LIMIT 4';
     db.query(sql, (err,listNew) =>{callback(listNew)})

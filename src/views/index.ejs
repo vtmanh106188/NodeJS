@@ -321,67 +321,19 @@
         </div>
         <div class="tab-content">
           <div id="tab-1" class="tab-pane fade show p-0 active">
-            <div class="row g-4">
-              <% for(let pr of listPro) { %>
-              <div
-                class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                data-wow-delay="0.1s"
-              >
-                <div class="product-item">
-                  <div class="position-relative bg-light overflow-hidden">
-                    <a href="/detail_product/<%= pr.idSP %>">
-                      <img
-                        class="img-fluid w-100"
-                        src="/img/<%= pr.imageSP %>"
-                        alt=""
-                      />
-                    </a>
-                    <div
-                      class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
-                    >
-                      New
-                    </div>
-                  </div>
-                  <div class="text-center p-4">
-                    <a
-                      class="d-block h5 mb-2"
-                      href="/detail_product/<%= pr.idSP %>"
-                      ><%= pr.nameSP %></a
-                    >
-                    <span class="text-primary me-1"
-                      ><%= pr.priceSP.toLocaleString() %> VNĐ</span
-                    >
-                    <!-- <span class="text-body text-decoration-line-through"
-                      ><%= pr.price %> VNĐ</span
-                    > Sales -->
-                  </div>
-                  <div class="d-flex border-top">
-                    <small class="w-50 text-center border-end py-2">
-                      <a class="text-body" href="/detail_product/<%= pr.idSP %>"
-                        ><i class="fa fa-eye text-primary me-2"></i>Chi Tiết</a
-                      >
-                    </small>
-                    <small class="w-50 text-center py-2">
-                      <a class="text-body" href="/add_to_cart/<%= pr.idSP %>"
-                        ><i class="fa fa-shopping-bag text-primary me-2"></i>Giỏ
-                        Hàng</a
-                      >
-                    </small>
-                  </div>
-                </div>
-              </div>
-              <% } %>
-              <!--Phân Trang-->
-              <div class="pagination" id="pagination">
-                <a href="#">«</a>
-                <% let totalPage = 0; let perPage = 8; totalPage =
-                listProduct.length / perPage; for (let i = 0; i < totalPage
-                ;i++) { %>
-                <a href="/getPage/<%= i+1 %>"><%= i+1 %></a>
-                <% } %>
-                <a href="#">»</a>
-              </div>
+            <div class="row g-4" id="list_product">
+              
             </div>
+             <!--Phân Trang-->
+             <!-- <div class="pagination" id="pagination">
+              <a href="#">«</a>
+              <% let totalPage = 0; let perPage = 8; totalPage =
+              listProduct.length / perPage; for (let i = 0; i < totalPage
+              ;i++) { %>
+              <a href="/getPage/<%= i+1 %>"><%= i+1 %></a>
+              <% } %>
+              <a href="#">»</a>
+            </div> -->
           </div>
         </div>
       </div>
@@ -673,3 +625,85 @@
     }
   };
 </script> -->
+
+<script>
+  var url = "http://localhost:1996/api/list_product";
+  fetch(url)
+    .then(res=> res.json())
+    .then(listProduct => {
+      listProduct.forEach(sp => {
+        str = `
+        <div
+                class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
+                data-wow-delay="0.1s" 
+              >
+        <div class="product-item">
+                  <div class="position-relative bg-light overflow-hidden">
+                    <a href="/detail_product/${sp.idSP}">
+                      <img
+                        class="img-fluid w-100"
+                        src="/img/${sp.imageSP}"
+                        alt=""
+                      />
+                    </a>
+                    <div
+                      class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"
+                    >
+                      New
+                    </div>
+                  </div>
+                  <div class="text-center p-4">
+                    <a
+                      class="d-block h5 mb-2"
+                      href="/detail_product/${sp.idSP}"
+                      >${sp.nameSP}</a
+                    >
+                    <span class="text-primary me-1"
+                      >${sp.priceSP.toLocaleString()} VNĐ</span
+                    >
+                    <!-- <span class="text-body text-decoration-line-through"
+                      > VNĐ</span
+                    > Sales -->
+                  </div>
+                  <div class="d-flex border-top">
+                    <small class="w-50 text-center border-end py-2">
+                      <a class="text-body" href="/detail_product/${sp.idSP}"
+                        ><i class="fa fa-eye text-primary me-2"></i>Chi Tiết</a
+                      >
+                    </small>
+                    <small class="w-50 text-center py-2">
+                      <a class="text-body" onclick="addCart(event, ${sp.idSP}, '${sp.nameSP}', ${sp.priceSP}, '${sp.imageSP}')" 
+                       style="cursor: pointer;" ><i class="fa fa-shopping-bag text-primary me-2"></i>Giỏ
+                        Hàng</a
+                      >
+                    </small>
+                  </div>
+                </div>
+                </div>
+         `
+      
+      document.querySelector('#list_product').innerHTML += str;
+      })
+    })
+      
+</script>
+
+<script>
+  function addCart(e, id, name, price, image) {
+      e.preventDefault();
+      
+      let cart_arr = JSON.parse(localStorage.getItem("cart"));
+      if (!cart_arr) {
+          cart_arr = [];
+          cart_arr.push({ idSP: id, nameSP: name, priceSP: price, imageSP: image, quantity: 1 });
+      } else {
+          let item = cart_arr.find((item) => item.id == id);
+          if (item) item.quantity++;
+          else cart_arr.push({ id: id, name: name, price: price, image: image, quantity: 1 });
+      }
+
+      alert('Thêm giỏ hàng thành công')
+
+      localStorage.setItem("cart", JSON.stringify(cart_arr));
+  }
+</script>

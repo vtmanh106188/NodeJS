@@ -5,6 +5,7 @@ let router = express.Router();
 
 const initAPIRoute = (app) => {
     // Product new hot best
+    router.get('/list_product', APIController.listProduct)
     router.get('/new_product', APIController.newProduct);
     router.get('/hot_product', APIController.hotProduct);
     router.get('/best_product', APIController.bestProduct);

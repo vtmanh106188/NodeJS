@@ -3,6 +3,11 @@ import modelProduct from '../models/product';
 import modelUser from '../models/user';
 
 //PRODUCT NEW HOT BEST
+
+let listProduct = (req, res) => {
+    modelProduct.list((listProduct) => {res.json(listProduct)})
+}
+
 let newProduct = (req, res) => {
     modelProduct.new((listNew) => {res.json(listNew)})
 }
@@ -43,7 +48,7 @@ let listUsers = (req, res) => {
 }
 
 module.exports = {
-    newProduct, hotProduct ,bestProduct, detailProductAPI, loaiSP,
+    newProduct, hotProduct ,bestProduct, detailProductAPI, loaiSP, listProduct,
 
     newUser, 
     
